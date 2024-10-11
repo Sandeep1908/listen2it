@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import axiosInstance from "../axios/axiosInstance";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function SignIn() {
   const [email, setEmail] = useState("");
@@ -94,7 +94,7 @@ function SignIn() {
 
             <p className="text-xs text-[#9CA3AF] text-center">
               Don&apos;t have an account?{" "}
-              <span className="cursor-pointer text-[#015FE4]">Register</span>
+              <Link to={'/signup'} className="cursor-pointer text-[#015FE4]">Register</Link>
             </p>
           </form>
         </div>

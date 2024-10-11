@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import axiosInstance from "../axios/axiosInstance";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Signup() {
   const [email, setEmail] = useState("");
@@ -9,10 +9,10 @@ function Signup() {
 
   const navigate=useNavigate()
 
-  // Define the mutation using `useMutation`
+   
   const mutation = useMutation({
     mutationFn: async (newUser) => {
-      // Use the configured Axios instance to send the signup request
+       
       const response = await axiosInstance.post("/user/register", newUser);
       return response.data;
     },
@@ -96,7 +96,7 @@ function Signup() {
             )}
 
             <p className="text-xs text-[#9CA3AF] text-center">
-              Already have an account? <span>Sign In</span>
+              Already have an account? <Link className="cursor-pointer text-[#015FE4]" to={'/signin'}>Sign In</Link>
             </p>
           </form>
         </div>

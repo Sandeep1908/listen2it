@@ -10,6 +10,9 @@ const App = () => {
     if (!authToken) {
       navigate("/signin");
     }
+     else{
+      navigate('/dashboard')
+     }
   }, []);
   
   return (
