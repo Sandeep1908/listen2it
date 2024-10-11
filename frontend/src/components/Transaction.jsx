@@ -74,22 +74,22 @@ function Transaction() {
 
       {isLoading ? (
         <p className="flex justify-center items-center h-full w-full">
-          Loading expenses...
+          No Record Found
         </p>
       ) : (
         <div className="p-3  h-[80vh] overflow-auto">
-          <h2 className="text-lg font-semibold">Today</h2>
+           <h2 className="text-lg font-semibold">Today</h2>
 
           {expenses?.Today.map((expense) => (
             <div
               key={expense._id}
-              className="flex justify-between items-center space-y-3"
+              className="flex justify-between items-start space-y-3"
             >
               {items?.map((i) =>
                 i.subcategories?.map((sub, idx) => {
                   if (sub.name === expense.subcategory) {
                     return (
-                      <p key={idx} className="w-full text-3xl">
+                      <p key={idx} className="  text-3xl">
                         {sub.icon}
                       </p>
                     );
@@ -98,30 +98,35 @@ function Transaction() {
                 })
               )}
 
-              <div className="w-full flex flex-col justify-start items-start">
-                <p className="text-lg font-[500]">{expense?.spendOn}</p>
-                <p className="text-xs text-[#707070]">{expense?.subcategory}</p>
+              <div className="w-full flex flex-col justify-center items-center">
+                <p className="text-sm w-full text-center   font-[500]">{expense?.spendOn}</p>
+                <p className="text-[10px] text-center w-full text-[#707070]">{expense?.subcategory}</p>
               </div>
 
-              <p className="w-full flex justify-end text-xs text-[#707070] ">
-                -₹{expense?.amount}
+              <p className="  flex justify-end text-xs text-[#707070] ">
+                <span>-₹</span>{expense?.amount}
               </p>
             </div>
           ))}
 
-          <h2 className="text-lg font-semibold">Yesterday</h2>
 
-          {expenses?.Yesterday.map((expense) => (
+
+          {
+            expenses.Yesterday.length>0 &&  <h2 className="text-lg font-semibold">Yesterday</h2>
+          }
+         
+
+         {expenses?.Yesterday.map((expense) => (
             <div
               key={expense._id}
-              className="flex justify-between items-center space-y-3"
+              className="flex justify-between items-start space-y-3"
             >
               {items?.map((i) =>
                 i.subcategories?.map((sub, idx) => {
                   if (sub.name === expense.subcategory) {
                     return (
-                      <p key={idx} className="w-full text-3xl">
-                        {sub?.icon}
+                      <p key={idx} className="  text-3xl">
+                        {sub.icon}
                       </p>
                     );
                   }
@@ -129,30 +134,35 @@ function Transaction() {
                 })
               )}
 
-              <div className="w-full flex flex-col justify-start items-start">
-                <p className="text-lg font-[500]">{expense?.spendOn}</p>
-                <p className="text-xs text-[#707070]">{expense?.subcategory}</p>
+              <div className="w-full flex flex-col justify-center items-center">
+                <p className="text-sm w-full text-center   font-[500]">{expense?.spendOn}</p>
+                <p className="text-[10px] text-center w-full text-[#707070]">{expense?.subcategory}</p>
               </div>
 
-              <p className="w-full flex justify-end text-xs text-[#707070] ">
-                -₹{expense?.amount}
+              <p className="  flex justify-end text-xs text-[#707070] ">
+                <span>-₹</span>{expense?.amount}
               </p>
             </div>
           ))}
 
-          <h2 className="text-lg font-semibold">Earlier</h2>
 
-          {expenses?.Earlier.map((expense) => (
+{
+            expenses.Yesterday.length>0 &&     <h2 className="text-lg font-semibold">Earlier</h2>
+          }
+         
+       
+
+         {expenses?.Earlier.map((expense) => (
             <div
               key={expense._id}
-              className="flex justify-between items-center space-y-3"
+              className="flex justify-between items-start space-y-3"
             >
               {items?.map((i) =>
                 i.subcategories?.map((sub, idx) => {
                   if (sub.name === expense.subcategory) {
                     return (
-                      <p key={idx} className="w-full text-3xl">
-                        {sub?.icon}
+                      <p key={idx} className="  text-3xl">
+                        {sub.icon}
                       </p>
                     );
                   }
@@ -160,16 +170,17 @@ function Transaction() {
                 })
               )}
 
-              <div className="w-full flex flex-col justify-start items-start">
-                <p className="text-lg font-[500]">{expense?.spendOn}</p>
-                <p className="text-xs text-[#707070]">{expense?.subcategory}</p>
+              <div className="w-full flex flex-col justify-center items-center">
+                <p className="text-sm w-full text-center   font-[500]">{expense?.spendOn}</p>
+                <p className="text-[10px] text-center w-full text-[#707070]">{expense?.subcategory}</p>
               </div>
 
-              <p className="w-full flex justify-end text-xs text-[#707070] ">
-                -₹{expense?.amount}
+              <p className="  flex justify-end text-xs text-[#707070] ">
+                <span>-₹</span>{expense?.amount}
               </p>
             </div>
           ))}
+
         </div>
       )}
     </div>
