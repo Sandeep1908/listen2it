@@ -5,12 +5,17 @@ import { Doughnut } from "react-chartjs-2";
 import axiosInstance from "../axios/axiosInstance";
 import { useQuery } from "@tanstack/react-query";
 
+
+
+//util funtion to fetch montly stats
 const fetchMonthlyExpenses = async () => {
   const response = await axiosInstance.get("/expense/monthly-stas");
   return response?.data?.message;
 };
 
-const DoughnutChart = () => {
+// Component
+
+const MontlyStats = () => {
   const chartRef = useRef(null);
 
   const {
@@ -99,4 +104,4 @@ const DoughnutChart = () => {
   );
 };
 
-export default DoughnutChart;
+export default MontlyStats;

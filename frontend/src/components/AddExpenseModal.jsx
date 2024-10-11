@@ -4,19 +4,16 @@ import { items } from "../config/categories";
 import { useMutation } from "@tanstack/react-query";
 import axiosInstance from "../axios/axiosInstance";
 
+//Add Expense modal to add new Expense
 function AddExpenseModal({ isOpenModal, setIsOpenModal }) {
   const categories = items?.map((i) => i.category);
-  
+
   const [subCategories, setSubCategories] = useState([]);
 
-  const [spendOn,setSpendOn] = useState('')
-  const [amount,setAmount] = useState(0)
-  const [category,setCategory] =useState('')
-  const [subcategory,setSubCategory] = useState('')
-
-
-  console.log(spendOn,amount,category,subcategory);
-  
+  const [spendOn, setSpendOn] = useState("");
+  const [amount, setAmount] = useState(0);
+  const [category, setCategory] = useState("");
+  const [subcategory, setSubCategory] = useState("");
 
   useEffect(() => {
     const subcategoriesItems =
@@ -27,12 +24,15 @@ function AddExpenseModal({ isOpenModal, setIsOpenModal }) {
 
   const mutation = useMutation({
     mutationFn: async (expenseData) => {
-      const response = await axiosInstance.post("/expense/add-expense", expenseData);
+      const response = await axiosInstance.post(
+        "/expense/add-expense",
+        expenseData
+      );
       return response.data;
     },
     onSuccess: () => {
-        alert('Expense add successfully')
-        setIsOpenModal(false)
+      alert("Expense add successfully");
+      setIsOpenModal(false);
     },
     onError: (error) => {
       console.error("Sign in failed", error);
@@ -40,14 +40,14 @@ function AddExpenseModal({ isOpenModal, setIsOpenModal }) {
     },
   });
 
-  // Form submit handler
+  // Add Expense handler
   const addExpense = (e) => {
     e.preventDefault();
     if (!spendOn || !amount || !category || !subcategory) {
       alert("Please fill all fields.");
       return;
     }
-    mutation.mutate({ spendOn,amount,category,subcategory });
+    mutation.mutate({ spendOn, amount, category, subcategory });
   };
 
   return (
@@ -78,7 +78,7 @@ function AddExpenseModal({ isOpenModal, setIsOpenModal }) {
             <input
               type="text"
               className="w-full p-2 text-xs border rounded-md placeholder:text-[10px]  "
-              onChange={(e)=>setSpendOn(e.target.value)}
+              onChange={(e) => setSpendOn(e.target.value)}
             />
           </div>
 
@@ -89,7 +89,7 @@ function AddExpenseModal({ isOpenModal, setIsOpenModal }) {
             <input
               type="number"
               className="w-full text-xs p-2 border rounded-md"
-              onChange={(e)=>setAmount(e.target.value)}
+              onChange={(e) => setAmount(e.target.value)}
             />
           </div>
 
@@ -115,22 +115,29 @@ function AddExpenseModal({ isOpenModal, setIsOpenModal }) {
             <label htmlFor="" className="text-xs text-[#606060] font-[500]">
               Sub-category
             </label>
-            <select className="w-full p-2 text-xs border rounded-md" onChange={(e)=>setSubCategory(e.target.value)}>
+            <select
+              className="w-full p-2 text-xs border rounded-md"
+              onChange={(e) => setSubCategory(e.target.value)}
+            >
+              {subCategories.length > 0 ? (
+                <option value="">Select a subcategory</option>
+              ) : (
+                <option value="">Select a category first</option>
+              )}
 
-              {subCategories.length>0 ?  <option value="">Select a subcategory</option> :  <option value="">Select a category first</option>}
-           
-              {  
-                subCategories?.map((sub, i) => (
-                  <option defaultChecked key={i} value={sub?.name}>
-                    {sub.name}
-                  </option>
-                ))
-               }
+              {subCategories?.map((sub, i) => (
+                <option defaultChecked key={i} value={sub?.name}>
+                  {sub.name}
+                </option>
+              ))}
             </select>
           </div>
 
           <div className="w-full pt-5">
-            <p onClick={addExpense} className="w-full cursor-pointer p-2 bg-[#015FE4] text-white text-center rounded-md">
+            <p
+              onClick={addExpense}
+              className="w-full cursor-pointer p-2 bg-[#015FE4] text-white text-center rounded-md"
+            >
               Add
             </p>
           </div>

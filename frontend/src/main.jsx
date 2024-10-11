@@ -38,12 +38,15 @@ const queryClient = new QueryClient();
 
 //Routes
 
+ 
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route path="/dashboard" element={<Home />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/signin" element={<SignIn />} />
+      
     </Route>
   )
 );

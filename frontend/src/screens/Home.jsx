@@ -1,5 +1,5 @@
-import BarChartState from "../components/BarChartState";
-import PieChartState from "../components/DoughnutChart";
+import WeeklyStats from "../components/WeeklyStats";
+import MontlyStats from "../components/MontlyStats";
 import Transaction from "../components/Transaction";
 import plusLogo from '../assets/Logo/plus.png'
 import { useState } from "react";
@@ -13,11 +13,11 @@ function Home() {
     <div className="w-full h-[calc(100vh-100px)] max-w-5xl m-auto  p-3 flex space-x-6" >
       <div className="max-w-[70%] w-full h-full  flex flex-col space-y-1 justify-between items-center  ">
         <div className="w-full h-[30vh p-2]">
-          <PieChartState />
+          <MontlyStats />
         </div>
 
         <div className="w-full h-[45vh]  ">
-          <BarChartState />
+          <WeeklyStats />
         </div>
       </div>
 

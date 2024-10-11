@@ -1,15 +1,11 @@
 import Logo from "../assets/Logo/logo.png";
 import Avatar from "../assets/Avatar/group.png";
 
-
 import { useNavigate } from "react-router-dom";
 
 import { useQuery } from "@tanstack/react-query";
- 
 
 import { fetchCurrentUser } from "../helper/HelperFunction";
-
-
 
 function Header() {
   const navigate = useNavigate();

@@ -4,6 +4,9 @@ import axiosInstance from "../axios/axiosInstance";
 
 import { useQuery } from "@tanstack/react-query";
 
+
+//util function to fetch all expenses category and subcategory wise
+
 const fetchExpenses = async (categoryId, subcategoryId) => {
   const response = await axiosInstance.get("/expense/get-expenses", {
     params: {
@@ -14,6 +17,9 @@ const fetchExpenses = async (categoryId, subcategoryId) => {
 
   return response?.data?.message;
 };
+
+
+//Transaction Component
 
 function Transaction() {
   const [categoryId, setCategoryId] = useState("all");

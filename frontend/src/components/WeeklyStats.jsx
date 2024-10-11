@@ -8,7 +8,7 @@ const fetchWeeklyExpenses = async () => {
   return response.data.message;
 };
 
-const BarChart = () => {
+const WeeklyStats = () => {
   const { data: weeklyExpenses, isLoading } = useQuery({
     queryKey: ["weeklyExpenses"],
     queryFn: fetchWeeklyExpenses,
@@ -136,4 +136,4 @@ const BarChart = () => {
   );
 };
 
-export default BarChart;
+export default WeeklyStats;
