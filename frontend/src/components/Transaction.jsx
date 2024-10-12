@@ -93,7 +93,7 @@ function Transaction() {
             >
               {items?.map((i) =>
                 i.subcategories?.map((sub, idx) => {
-                  if (sub.name === expense.subcategory) {
+                  if (sub.name === expense?.subcategory) {
                     return (
                       <p key={idx} className="  text-3xl">
                         {sub.icon}
@@ -118,11 +118,11 @@ function Transaction() {
 
 
           {
-            expenses.Yesterday.length>0 &&  <h2 className="text-lg font-semibold">Yesterday</h2>
+            expenses?.Yesterday.length>0 &&  <h2 className="text-lg font-semibold">Yesterday</h2>
           }
          
 
-         {expenses?.Yesterday.map((expense) => (
+         {expenses?.Yesterday?.map((expense) => (
             <div
               key={expense._id}
               className="flex justify-between items-start space-y-3"
@@ -153,12 +153,12 @@ function Transaction() {
 
 
 {
-            expenses.Yesterday.length>0 &&     <h2 className="text-lg font-semibold">Earlier</h2>
+            expenses?.Earlier.length>0 &&     <h2 className="text-lg font-semibold">Earlier</h2>
           }
          
        
 
-         {expenses?.Earlier.map((expense) => (
+         {expenses?.Earlier?.map((expense) => (
             <div
               key={expense._id}
               className="flex justify-between items-start space-y-3"

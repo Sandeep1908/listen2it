@@ -73,7 +73,7 @@ const MontlyStats = () => {
     },
   };
 
-  if (isLoading) return <p>Loading...</p>;
+   
   if (isError) return <p>Error loading expenses.</p>;
 
   return (
