@@ -3,10 +3,13 @@ import CloseIco from "../assets/Logo/close.png";
 import { items } from "../config/categories";
 import { useMutation } from "@tanstack/react-query";
 import axiosInstance from "../axios/axiosInstance";
+import { useQueryClient } from "@tanstack/react-query";
 
 //Add Expense modal to add new Expense
 function AddExpenseModal({ isOpenModal, setIsOpenModal }) {
+  const queryClient= useQueryClient();
   const categories = items?.map((i) => i.category);
+
 
   const [subCategories, setSubCategories] = useState([]);
 
@@ -32,6 +35,7 @@ function AddExpenseModal({ isOpenModal, setIsOpenModal }) {
     },
     onSuccess: () => {
       alert("Expense add successfully");
+      queryClient.invalidateQueries('expenses')
       setIsOpenModal(false);
     },
     onError: (error) => {

@@ -5,6 +5,7 @@ import axiosInstance from "../axios/axiosInstance";
 import { useQuery } from "@tanstack/react-query";
 
 
+
 //util function to fetch all expenses category and subcategory wise
 
 const fetchExpenses = async (categoryId, subcategoryId) => {
@@ -109,8 +110,8 @@ function Transaction() {
                 <p className="text-[10px] text-center w-full text-[#707070]">{expense?.subcategory}</p>
               </div>
 
-              <p className="  flex justify-end text-xs text-[#707070] ">
-                <span>-₹</span>{expense?.amount}
+              <p className="  flex justify-end text-xs text-[#707070] w-full max-w-20 ">
+                <span className="flex">-₹</span>{expense?.amount}
               </p>
             </div>
           ))}
@@ -145,7 +146,7 @@ function Transaction() {
                 <p className="text-[10px] text-center w-full text-[#707070]">{expense?.subcategory}</p>
               </div>
 
-              <p className="  flex justify-end text-xs text-[#707070] ">
+              <p className="  flex justify-end text-xs text-[#707070] w-full max-w-20">
                 <span>-₹</span>{expense?.amount}
               </p>
             </div>
@@ -181,7 +182,7 @@ function Transaction() {
                 <p className="text-[10px] text-center w-full text-[#707070]">{expense?.subcategory}</p>
               </div>
 
-              <p className="  flex justify-end text-xs text-[#707070] ">
+              <p className="  flex justify-end text-xs text-[#707070] w-full max-w-20 ">
                 <span>-₹</span>{expense?.amount}
               </p>
             </div>
