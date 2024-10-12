@@ -7,18 +7,16 @@ function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const navigate=useNavigate()
+  const navigate = useNavigate();
 
-   
   const mutation = useMutation({
     mutationFn: async (newUser) => {
-       
       const response = await axiosInstance.post("/user/register", newUser);
       return response.data;
     },
     onSuccess: (data) => {
       alert("Signup successful!", data);
-      navigate('/signin')
+      navigate("/signin");
     },
     onError: (error) => {
       console.error("Signup failed", error);
@@ -96,7 +94,10 @@ function Signup() {
             )}
 
             <p className="text-xs text-[#9CA3AF] text-center">
-              Already have an account? <Link className="cursor-pointer text-[#015FE4]" to={'/signin'}>Sign In</Link>
+              Already have an account?{" "}
+              <Link className="cursor-pointer text-[#015FE4]" to={"/signin"}>
+                Sign In
+              </Link>
             </p>
           </form>
         </div>

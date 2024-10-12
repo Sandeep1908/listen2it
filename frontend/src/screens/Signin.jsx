@@ -19,7 +19,9 @@ function SignIn() {
       navigate("/dashboard");
     },
     onError: (error) => {
-      console.error("Sign in failed", error);
+
+      localStorage.removeItem("authToken");
+      navigate("/sigin");
       alert("Invalid credentials or server error");
     },
   });
@@ -94,7 +96,9 @@ function SignIn() {
 
             <p className="text-xs text-[#9CA3AF] text-center">
               Don&apos;t have an account?{" "}
-              <Link to={'/signup'} className="cursor-pointer text-[#015FE4]">Register</Link>
+              <Link to={"/signup"} className="cursor-pointer text-[#015FE4]">
+                Register
+              </Link>
             </p>
           </form>
         </div>
