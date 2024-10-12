@@ -18,7 +18,7 @@ const WeeklyStats = () => {
     return <p>Loading...</p>;
   }
 
-  const labels = weeklyExpenses.map((expense) => {
+  const labels = weeklyExpenses?.map((expense) => {
     const date = moment(expense.date);
     return date.isSame(moment(), "day")
       ? "Today"
@@ -27,11 +27,11 @@ const WeeklyStats = () => {
       : date.format("Do MMM");
   });
 
-  const essentialsData = weeklyExpenses.map((expense) => expense.Essential);
-  const nonEssentialsData = weeklyExpenses.map(
+  const essentialsData = weeklyExpenses?.map((expense) => expense.Essential);
+  const nonEssentialsData = weeklyExpenses?.map(
     (expense) => expense.NonEssential
   );
-  const totalData = essentialsData.map(
+  const totalData = essentialsData?.map(
     (value, index) => value + nonEssentialsData[index]
   );
 

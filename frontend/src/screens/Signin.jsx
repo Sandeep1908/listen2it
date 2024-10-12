@@ -21,7 +21,7 @@ function SignIn() {
     onError: (error) => {
 
       localStorage.removeItem("authToken");
-      navigate("/sigin");
+      navigate("/signin");
       alert("Invalid credentials or server error");
     },
   });
