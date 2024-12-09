@@ -5,8 +5,8 @@ import { addExpense, getAllExpenses, getMonthlyExpenditureByCategory, getWeeklyE
 const router = express.Router()
 
 
-router.route('/add-expense').post(verifyJwt,addExpense)
-router.route('/get-expenses').get(verifyJwt,getAllExpenses)
+router.route('/add-expense').post(addExpense)
+router.route('/get-expenses').get(getAllExpenses)
 router.route('/monthly-stas').get(verifyJwt,getMonthlyExpenditureByCategory)
 router.route('/weekly-stats').get(verifyJwt,getWeeklyExpenditureByCategory)
 

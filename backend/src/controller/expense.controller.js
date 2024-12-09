@@ -37,9 +37,12 @@ const getAllExpenses = asyncHandler(async (req, res) => {
     filter.category = category;
   }
 
+  
   if (subcategory) {
     filter.subcategory = subcategory;
   }
+
+
 
   const expenses = await Expense.find(filter).sort({ date: -1 });
 
@@ -55,6 +58,58 @@ const getAllExpenses = asyncHandler(async (req, res) => {
     Yesterday: [],
     Earlier: [],
   };
+  
+ 
+  //grouping the data
+
+
+  const groupedExpensedNew=await Expense.aggregate([
+    {
+      $match: {
+        userId: new mongoose.Types.ObjectId(userId),
+      
+      },
+    },
+
+   
+    {
+      $group: {
+
+        _id:{
+          date: { $dateToString: { format: "%Y-%m-%d", date: "$createdAt" } },
+          amount:"$amount",
+          title:"$spendOn",
+          subcategory:"$subcategory"
+        }
+        
+          
+       
+        
+      },
+     
+    },
+
+
+    {
+
+      $sort:{
+        "date":1
+      }
+    },
+    
+    
+
+
+
+
+
+
+  ])
+
+
+  console.log("groupedExpenseNew",groupedExpensedNew);
+
+
 
   expenses.forEach((expense) => {
     const expenseDate = moment(expense.createdAt).startOf("day");
@@ -71,7 +126,7 @@ const getAllExpenses = asyncHandler(async (req, res) => {
   res
     .status(200)
     .json(
-      new ApiResponse(200, groupedExpenses, "Expenses retrieved successfully")
+      new ApiResponse(200, groupedExpensedNew, "Expenses retrieved successfully")
     );
 });
 
@@ -142,7 +197,7 @@ const getWeeklyExpenditureByCategory = asyncHandler(async (req, res) => {
   const currentDate = moment().startOf("day");
   const pastWeekDate = moment().subtract(6, "days").startOf("day");
 
-  console.log("current date",currentDate.toDate());
+  
   const weeklyExpenses = await Expense.aggregate([
     {
       $match: {
@@ -167,7 +222,7 @@ const getWeeklyExpenditureByCategory = asyncHandler(async (req, res) => {
     },
   ]);
 
-  console.log("Aggregated weekly expenses:", weeklyExpenses);
+   
 
   const formattedWeeklyExpenses = [];
 
@@ -176,6 +231,7 @@ const getWeeklyExpenditureByCategory = asyncHandler(async (req, res) => {
       .subtract(i, "days")
       .startOf("day")
       .format("YYYY-MM-DD");
+      
     const dayStats = { date, Essential: 0, NonEssential: 0, Miscellaneous: 0 };
 
     weeklyExpenses.forEach((exp) => {
@@ -193,6 +249,8 @@ const getWeeklyExpenditureByCategory = asyncHandler(async (req, res) => {
 
     formattedWeeklyExpenses.push(dayStats);
   }
+
+ 
 
   res
     .status(200)
