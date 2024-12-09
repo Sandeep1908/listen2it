@@ -28,7 +28,7 @@ const addExpense = asyncHandler(async (req, res) => {
 });
 
 const getAllExpenses = asyncHandler(async (req, res) => {
-  const userId = req.user._id;
+  const userId = req.user?._id;
   const { category, subcategory } = req.query;
 
   let filter = { userId };
